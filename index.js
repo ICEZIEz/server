@@ -22,7 +22,7 @@ app.get('/courses', function (req, res, next) {
   );
 })
 
-app.get('/courses/:id', function (req, res, next) {
+app.get('/courses/:ID', function (req, res, next) {
   const id = req.params.id;
   connection.query(
     'SELECT * FROM `course` WHERE `ID` = ?',

@@ -1,7 +1,7 @@
 var express = require('express')
 var cors = require('cors')
 const mysql = require('mysql2');
-request('dotenv').config();
+require('dotenv').config()
 const connection=mysql.createConnection(process.env.DATABASE_URL)
 
 var app = express()

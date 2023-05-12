@@ -12,6 +12,10 @@ app.listen(5000, function () {
   console.log('CORS-enabled web server listening on port 5000')
 })
 
+app.get('/', (req, res) => {
+  console.log("Just got a request!")
+  res.send('Yo!')
+})
 
 app.get('/courses', function (req, res, next) {
   connection.query(

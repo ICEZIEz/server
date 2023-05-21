@@ -101,6 +101,7 @@ app.post('/Bookings', function (req, res, next) {
     'INSERT INTO `Booking`(`User_ID`, `ID`, `countcourse`, `Price`) VALUES (?, ?, ?, ?)',
     [req.body.User_ID, req.body.ID, req.body.countcourse, req.body.Price],
     function(err, results) {
+      if(err)res.send(err);
       res.send(results);
     }
   );

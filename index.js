@@ -95,3 +95,13 @@ app.post('/users', function(request, response) {
     response.end();
   }
 }); 
+
+app.post('/Bookings', function (req, res, next) {
+  connection.query(
+    'INSERT INTO `Booking`(`User_ID`, `ID`, `countcourse`, `Price`) VALUES (?, ?, ?, ?)',
+    [req.body.User_ID, req.body.ID, req.body.countcourse, req.body.Price,],
+    function(err, results) {
+      res.json(results);
+    }
+  );
+})

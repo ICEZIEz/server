@@ -26,6 +26,15 @@ app.get('/courses', function (req, res, next) {
   );
 })
 
+app.get('/booking', function (req, res, next) {
+  connection.query(
+    'SELECT * FROM `booking`',
+    function(err, results, fields) {
+      res.send(results);
+    }
+  );
+})
+
 app.get('/courses/:ID', function (req, res, next) {
   const id = req.params.id;
   connection.query(
@@ -58,7 +67,18 @@ app.put('/courses', function (req, res, next) {
   );
 })
 
+app.delete('/delete/:ID', function (req, res, next) {
+  connection.query(
+    'DELETE FROM `booking` WHERE Booking_ID = ?',
+    [req.params.ID],
+    function(err, results) {
+      res.json(results);
+    }
+  );
+})
+
 app.delete('/courses', function (req, res, next) {
+  const id = req.params.id;
   connection.query(
     'DELETE FROM `course` WHERE ID = ?',
     [req.body.ID],
@@ -98,11 +118,10 @@ app.post('/users', function(request, response) {
 
 app.post('/Bookings', function (req, res, next) {
   connection.query(
-    'INSERT INTO `Booking`(`User_ID`, `ID`, `countcourse`, `Price`) VALUES (?, ?, ?, ?)',
-    [req.body.User_ID, req.body.ID, req.body.countcourse, req.body.Price],
+    'INSERT INTO `booking`(`User_Name`, `coursename`, `countcourse`, `Price`) VALUES (?, ?, ?, ?)',
+    [req.body.User_Name, req.body.coursename, req.body.countcourse, req.body.Price],
     function(err, results) {
-      if(err)res.send(err);
-      res.send(results);
+      res.send(err);
     }
   );
 })
